@@ -1,0 +1,17 @@
+.database-project-container {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.execute-button {
+  width: 300px;
+  font-weight: bold !important;
+  height: 56px;
+}

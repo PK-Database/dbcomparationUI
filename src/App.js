@@ -1,10 +1,10 @@
 import React from "react";
 import './App.css';
-import ToggleGroup from "./components/ToggleGroup";
+import MainPage from "./pages/MainPage";
 export default function App() {
     return (
-    <div className="App">
-      <ToggleGroup/>
+    <div className="app">
+      <MainPage/>
     </div>
   );
 }
