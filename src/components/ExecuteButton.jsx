@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 
 
-const ExecuteButton = (props) => {
+const ExecuteButton = ({ type, record, query }) => {
     const handleExecute = (evt) => {
         evt.preventDefault();
-        alert(props.query + "\n" + props.records);
+        alert(query + "\n" + record + "\n" + type );
     }
 
     return (
