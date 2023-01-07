@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import ExecuteButton from "../components/ExecuteButton";
-import "./MainPage.scss";
-import DatabasePicker from "../components/databasePicker/DatabasePicker";
-import RecordsCounter from "../components/recordsCounter/RecordsCounter";
-import QuerySelect from "../components/querySelect/QuerySelect";
+import ExecuteButton from "../../components/ExecuteButton";
+import "./QueryPage.scss";
+import DatabasePicker from "../../components/databasePicker/DatabasePicker";
+import RecordsCounter from "../../components/recordsCounter/RecordsCounter";
+import QuerySelect from "../../components/querySelect/QuerySelect";
 
-const MainPage = () => {
+const QueryPage = () => {
     const [activeTypeId, setActiveTypeId] = useState(0);
     const [recordsNumber, setRecordsNumber] = useState(0);
     const [queryId, setQueryId] = useState(0);
 
     return (
-    <div className='database-project-container'>
+    <div className='database-project-query'>
         <DatabasePicker active={activeTypeId} changeType={setActiveTypeId} />
         <RecordsCounter recordsNumber={recordsNumber} onNumberChange={setRecordsNumber} />
         <QuerySelect queryId={queryId} onChange={setQueryId} />
@@ -19,4 +19,4 @@ const MainPage = () => {
     </div> );
 };
 
-export default MainPage;
+export default QueryPage;
