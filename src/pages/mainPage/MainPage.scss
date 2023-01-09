@@ -3,37 +3,11 @@
   width: 1000px;
   flex-direction: column;
 
-  .records-picker {
-    &__button {
-      width: 200px;
-      height: 56px;
-    }
+  .tabs {
+    margin-bottom: 30px;
 
-    &__button-active {
-      border: 2px solid #1561ad !important;
-      border-radius: 5px;
+    .tab {
+      font-weight: bold !important;
     }
-
-    &__carousel {
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .icon {
-      height: 30px;
-    }
-
-    .type {
-      width: 100px;
-      text-transform: capitalize;
-      color: black;
-    }
-  }
-  .save-button {
-    width: 300px;
-    font-weight: bold !important;
-    height: 56px;
   }
 }

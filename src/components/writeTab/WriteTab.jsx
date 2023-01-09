@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ExecuteButton from "../../components/ExecuteButton";
-import "./QueryPage.scss";
-import DatabasePicker from "../../components/databasePicker/DatabasePicker";
-import RecordsCounter from "../../components/recordsCounter/RecordsCounter";
-import QuerySelect from "../../components/querySelect/QuerySelect";
+import ExecuteButton from "../ExecuteButton";
+import DatabasePicker from "../databasePicker/DatabasePicker";
+import RecordsCounter from "../recordsCounter/RecordsCounter";
+import QuerySelect from "../querySelect/QuerySelect";
+import "./WriteTab.scss";
 
-const QueryPage = () => {
+const WriteTab = () => {
     const [activeTypeId, setActiveTypeId] = useState(0);
     const [recordsNumber, setRecordsNumber] = useState(0);
     const [queryId, setQueryId] = useState(0);
@@ -19,4 +19,4 @@ const QueryPage = () => {
     </div> );
 };
 
-export default QueryPage;
+export default WriteTab;
