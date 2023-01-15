@@ -5,20 +5,20 @@ import "./DatabasePicker.scss";
 
 const types = [
     {
-        id: 0,
-        name: 'PostgreSQL'
+        name: 'PostgreSQL',
+        value: 'POSTGRESQL'
     },
     {
-        id: 1,
-        name: 'MongoDB'
+        name: 'MongoDB',
+        value: 'MONGODB'
     },
     {
-        id: 2,
-        name: 'Cassandra'
+        name: 'Cassandra',
+        value: 'CASSANDRA'
     },
     {
-        id: 3,
-        name: 'Dynamo'
+        name: 'Dynamo',
+        value: 'DYNAMODB'
     }
 ];
 
@@ -27,7 +27,7 @@ const DatabasePicker = ({ active, changeType }) => (
         <span className='label'>Choose database:</span>
         <div className="database-picker__carousel">
             {types.map((type) => (
-                <Button variant='outlined' className={cn("database-picker__button", active === type.id ? 'database-picker__button-active' : null)} onClick={() => changeType(type.id)}>
+                <Button variant='outlined' className={cn("database-picker__button", active === type.value ? 'database-picker__button-active' : null)} onClick={() => changeType(type.value)}>
                     <img className="icon" src={require("../../assets/" + type.name + ".png")} alt={type.name} />
                     <div className="type">{type.name}</div>
                 </Button>

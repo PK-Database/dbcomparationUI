@@ -4,20 +4,11 @@ import "./QuerySelect.scss";
 
 const options = [
     {
-        id: 0,
-        name: 'Query0'
+        name: 'READ'
     }, {
-        id: 1,
-        name: 'Query1'
+        name: 'UPDATE'
     }, {
-        id: 2,
-        name: 'Query2'
-    },{
-        id: 3,
-        name: 'Query3'
-    },{
-        id: 4,
-        name: 'Query4'
+        name: 'DELETE'
     }
 ]
 
@@ -26,7 +17,7 @@ const QuerySelect = ({ queryId, onChange }) => (
         <span className='label'>Choose a query:</span>
         <Select value={queryId} onChange={(e) => onChange(e.target.value)}>
             {options.map(option =>
-                    <MenuItem value={option.id}>
+                    <MenuItem value={option.name}>
                         <em>{option.name}</em>
                     </MenuItem>
                 )}

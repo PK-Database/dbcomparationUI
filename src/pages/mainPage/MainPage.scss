@@ -1,13 +1,15 @@
 .main-page-container {
   display: flex;
-  width: 1000px;
+  width: 1200px;
   flex-direction: column;
+  align-items: center;
 
   .tabs {
     margin-bottom: 30px;
 
     .tab {
       font-weight: bold !important;
+      width: 400px
     }
   }
 }
