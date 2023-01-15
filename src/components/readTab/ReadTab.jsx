@@ -6,6 +6,7 @@ import { saveToDynamo, deleteAllFromDynamo } from "../../services/dynamoService"
 import { saveToPostgresql, deleteAllFromPostgresql } from "../../services/postgresqlService";
 import { saveToCassandra, deleteAllFromCassandra } from "../../services/cassandraService";
 import { saveToMongo, deleteAllFromMongo } from "../../services/mongoService";
+import FillDatabaseTimeTable from "../fillDatabaseTimeTable/FillDatabaseTimeTable";
 
 const options = [
     {
@@ -28,19 +29,95 @@ const options = [
 
 const ReadTab = () => {
     const [jsonSize, setJsonSize] = useState('');
+    const [mongoRow, setMongoRow] = useState( {
+        id: 'MONGODB',
+        saveAll: '-',
+        deleteAll: '-'
+    });
+    const [postgresRow, setPostgresRow] = useState( {
+        id: 'POSTGRESQL',
+        saveAll: '-',
+        deleteAll: '-'
+    });
+    const [cassandraRow, setCassandraRow] = useState( {
+        id: 'CASSANDRA',
+        saveAll: '-',
+        deleteAll: '-'
+    });
+    const [dynamoRow, setDynamoRow] = useState( {
+        id: 'DYNAMODB',
+        saveAll: '-',
+        deleteAll: '-'
+    });
 
     const onSave = () => {
-        saveToMongo(jsonSize).then(() => console.log('mongo deleted all'));;
-        saveToPostgresql(jsonSize).then(() => console.log('postgresql deleted all'));;
-        saveToCassandra(jsonSize).then(() => console.log('cassandra deleted all'));;
-        saveToDynamo(jsonSize).then(() => console.log('dynamo deleted all'));;
+        let mongoStart = new Date();
+        saveToMongo(jsonSize).then(() => {
+            setMongoRow({
+                id: mongoRow.id,
+                deleteAll: mongoRow.deleteAll,
+                saveAll: new Date() - mongoStart + ' [ms]'
+            });
+        });
+        let postgresStart = new Date();
+        saveToPostgresql(jsonSize).then(() => {
+            setPostgresRow({
+                id: postgresRow.id,
+                deleteAll: postgresRow.deleteAll,
+                saveAll: new Date() - postgresStart + ' [ms]'
+            });
+        });
+        let cassandraStart = new Date();
+        saveToCassandra(jsonSize).then(() => {
+            setCassandraRow({
+                id: cassandraRow.id,
+                deleteAll: cassandraRow.deleteAll,
+                saveAll: new Date() - cassandraStart + ' [ms]'
+            });
+        });
+        let dynamoStart = new Date();
+        saveToDynamo(jsonSize).then(() => {
+            setDynamoRow({
+                id: dynamoRow.id,
+                deleteAll: dynamoRow.deleteAll,
+                saveAll: new Date() - dynamoStart + ' [ms]'
+            });
+        });
     }
 
-    const onReset = () => {
-        deleteAllFromCassandra().then(() => console.log('cassandra deleted all'));
-        deleteAllFromMongo().then(() => console.log('mongo deleted all'));
-        deleteAllFromPostgresql().then(() => console.log('postgresql deleted all'));
-        deleteAllFromDynamo().then(() => console.log('dynamo deleted all'));
+    const onDelete = () => {
+        let mongoStart = new Date();
+        deleteAllFromMongo().then(() => {
+            setMongoRow({
+                id: mongoRow.id,
+                deleteAll: new Date() - mongoStart + ' [ms]',
+                saveAll: mongoRow.saveAll
+            });
+        });
+        let postgresStart = new Date();
+        deleteAllFromPostgresql().then(() => {
+            setPostgresRow({
+                id: postgresRow.id,
+                deleteAll: new Date() - postgresStart + ' [ms]',
+                saveAll: postgresRow.saveAll
+            });
+        });
+        let cassandraStart = new Date();
+        deleteAllFromCassandra().then(() => {
+            setCassandraRow({
+                id: cassandraRow.id,
+                deleteAll: new Date() - cassandraStart + ' [ms]',
+                saveAll: cassandraRow.saveAll
+            });
+        });
+        let dynamoStart = new Date();
+        deleteAllFromDynamo().then(() => {
+            setDynamoRow({
+                id: dynamoRow.id,
+                deleteAll: new Date() - dynamoStart + ' [ms]',
+                saveAll: dynamoRow.saveAll
+            });
+        });
     }
 
     return (
@@ -65,9 +142,12 @@ const ReadTab = () => {
                 <Button variant="contained" className="save-button" onClick={onSave}>
                     Save
                 </Button>
-                <Button variant="contained" className="reset-button" color="error" onClick={onReset}>
+                <Button variant="contained" className="reset-button" color="error" onClick={onDelete}>
                     Reset
                 </Button>
+            </div>
+            <div className='time-table-container'>
+                <FillDatabaseTimeTable dynamoRow={dynamoRow} mongoRow={mongoRow} cassandraRow={cassandraRow} postgresRow={postgresRow} />
             </div>
         </div>
     );

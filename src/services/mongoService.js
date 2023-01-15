@@ -1,9 +1,12 @@
+const ip = '192.168.0.248:8080';
+const url = 'http://' + ip;
+
 export const saveToMongo = (jsonSize) => {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`http://localhost:8080/upload?databaseType=MONGODB&jsonSize=${encodeURIComponent(jsonSize)}`, options);
+    return fetch(`${url}/upload?databaseType=MONGODB&jsonSize=${encodeURIComponent(jsonSize)}`, options);
 }
 
 export const deleteAllFromMongo = () => {
@@ -11,7 +14,7 @@ export const deleteAllFromMongo = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`http://localhost:8080/database/query?databaseType=MONGODB&queryType=DELETE_ALL`, options);
+    return fetch(`${url}/database/query?databaseType=MONGODB&queryType=DELETE_ALL`, options);
 }
 
 export const queryMongo = (method) => {
@@ -19,5 +22,5 @@ export const queryMongo = (method) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`http://localhost:8080/database/query?databaseType=MONGODB&queryType=${encodeURIComponent(method)}`, options);
+    return fetch(`${url}/database/query?databaseType=MONGODB&queryType=${encodeURIComponent(method)}`, options);
 }

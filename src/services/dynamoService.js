@@ -1,9 +1,12 @@
+const ip = '192.168.0.248:8080';
+const url = 'http://' + ip;
+
 export const saveToDynamo = (jsonSize) => {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`http://localhost:8080/upload?databaseType=DYNAMODB&jsonSize=${encodeURIComponent(jsonSize)}`, options);
+    return fetch(`${url}/upload?databaseType=DYNAMODB&jsonSize=${encodeURIComponent(jsonSize)}`, options);
 }
 
 export const deleteAllFromDynamo = () => {
@@ -11,7 +14,7 @@ export const deleteAllFromDynamo = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`http://localhost:8080/database/query?databaseType=DYNAMODB&queryType=DELETE_ALL`, options);
+    return fetch(`${url}/database/query?databaseType=DYNAMODB&queryType=DELETE_ALL`, options);
 }
 
 export const queryDynamo = (method) => {
@@ -19,5 +22,5 @@ export const queryDynamo = (method) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`http://localhost:8080/database/query?databaseType=DYNAMODB&queryType=${encodeURIComponent(method)}`, options);
+    return fetch(`${url}/database/query?databaseType=DYNAMODB&queryType=${encodeURIComponent(method)}`, options);
 }

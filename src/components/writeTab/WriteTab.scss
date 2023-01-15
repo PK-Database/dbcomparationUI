@@ -1,6 +1,6 @@
 .database-project-query {
   display: flex;
-  width: 1000px;
+  width: 1100px;
   flex-direction: column;
 }
 
@@ -14,4 +14,8 @@
   width: 300px;
   font-weight: bold !important;
   height: 56px;
+}
+
+.time-table-container {
+  margin-top: 20px;
 }

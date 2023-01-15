@@ -1,9 +1,12 @@
+const ip = '192.168.0.248:8080';
+const url = 'http://' + ip;
+
 export const saveToPostgresql = (jsonSize) => {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`http://localhost:8080/upload?databaseType=POSTGRESQL&jsonSize=${encodeURIComponent(jsonSize)}`, options);
+    return fetch(`${url}/upload?databaseType=POSTGRESQL&jsonSize=${encodeURIComponent(jsonSize)}`, options);
 }
 
 export const deleteAllFromPostgresql = () => {
@@ -11,7 +14,7 @@ export const deleteAllFromPostgresql = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`http://localhost:8080/database/query?databaseType=POSTGRESQL&queryType=DELETE_ALL`, options);
+    return fetch(`${url}/database/query?databaseType=POSTGRESQL&queryType=DELETE_ALL`, options);
 }
 
 export const queryPostgresql = (method) => {
@@ -19,5 +22,5 @@ export const queryPostgresql = (method) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     }
-    return fetch(`http://localhost:8080/database/query?databaseType=POSTGRESQL&queryType=${encodeURIComponent(method)}`, options);
+    return fetch(`${url}/database/query?databaseType=POSTGRESQL&queryType=${encodeURIComponent(method)}`, options);
 }
